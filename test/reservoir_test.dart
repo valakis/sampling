@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:test/test.dart';
-
 import 'package:sampling/src/reservoir.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('ReservoirSampler', () {

@@ -5,14 +5,14 @@ import 'package:sampling/src/sampler.dart';
 /// Reservoir sampler following the algorithm in
 /// https://en.wikipedia.org/wiki/Reservoir_sampling
 class ReservoirSampler<T> extends SamplerBase<T> {
+  ReservoirSampler(int limit, {Random? random})
+      : _limit = limit,
+        _random = random ?? new Random();
+
   final List<T> _items = [];
   final int _limit;
   final Random _random;
   int _totalCount = 0;
-
-  ReservoirSampler(int limit, {Random random})
-      : _limit = limit,
-        _random = random ?? new Random();
 
   @override
   void add(T item) {

@@ -1,6 +1,5 @@
-import 'package:test/test.dart';
-
 import 'package:sampling/src/sampler.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('IntSampler', () {

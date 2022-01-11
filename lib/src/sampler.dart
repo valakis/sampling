@@ -7,7 +7,7 @@ abstract class Sampler<T> {
   void add(T item);
 
   /// Add multiple items to the sampler.
-  void addAll(Iterable<T> items);
+  void addAll(Iterable<T>? items);
 }
 
 class SamplerBase<T> implements Sampler<T> {
@@ -22,27 +22,27 @@ class SamplerBase<T> implements Sampler<T> {
   }
 
   @override
-  void addAll(Iterable<T> items) {
+  void addAll(Iterable<T>? items) {
     items?.forEach(add);
   }
 }
 
 class ComparableSampler<T extends Comparable> extends SamplerBase<T> {
-  T _min;
-  T _max;
+  T? _min;
+  T? _max;
 
-  T get min => _min;
-  T get max => _max;
+  T? get min => _min;
+  T? get max => _max;
 
   @override
   void add(T item) {
     super.add(item);
     _min ??= item;
     _max ??= item;
-    if (_min.compareTo(item) > 0) {
+    if (_min!.compareTo(item) > 0) {
       _min = item;
     }
-    if (_max.compareTo(item) < 0) {
+    if (_max!.compareTo(item) < 0) {
       _max = item;
     }
   }
@@ -62,8 +62,8 @@ class IntSampler extends ComparableSampler<int> {
 }
 
 class CompositeSampler<T> extends SamplerBase<T> {
-  final List<Sampler<T>> _samplers;
   CompositeSampler(this._samplers);
+  final List<Sampler<T>> _samplers;
 
   @override
   void add(T item) {
